@@ -43,4 +43,5 @@ out/
 __pycache__/
 *.pyc
 
-health
+### Docker / DB ###
+pgdata/
