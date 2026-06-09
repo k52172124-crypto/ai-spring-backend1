@@ -3,7 +3,7 @@ package com.sesac.aibackend.controller;
 import com.sesac.aibackend.domain.ChatLog;
 import com.sesac.aibackend.dto.ChatLogRequest;
 import com.sesac.aibackend.dto.ChatLogResponse;
-import com.sesac.aibackend.service.ChatLongService;
+import com.sesac.aibackend.service.ChatLogService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ChatLogController {
 
-    private final ChatLongService chatLogService;
+    private final ChatLogService chatLogService;
 
     /**
      * [getId 버전] userId(PK)로 대화 로그를 최신순으로 조회합니다.
@@ -45,7 +45,7 @@ public class ChatLogController {
 
     @PostMapping
     public ResponseEntity<ChatLogResponse> create(@Valid @RequestBody ChatLogRequest req) {
-        ChatLog saved = chatLogService.save(req.userId(), req.prompt(), req.response());
+        ChatLog saved = chatLogService.save(req.username(), req.prompt(), req.response());
         URI location = URI.create("/chat-logs/" + saved.getId());
         return ResponseEntity.created(location).body(ChatLogResponse.from(saved));
     }

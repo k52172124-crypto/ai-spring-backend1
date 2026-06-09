@@ -21,6 +21,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 @EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+
     private final RestAuthenticationEntryPoint authenticationEntryPoint;
     private final RestAccessDeniedHandler accessDeniedHandler;
     private final JwtAuthenticationFilter jwtAuthFilter;
